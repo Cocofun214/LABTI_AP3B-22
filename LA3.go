@@ -1,5 +1,8 @@
 Soal!
 
+
+Versi--1
+
 //1) Buatlah database dan tabel dengan nama bebas untuk menyimpan data 3 
 //   mahasiswa yang terdiri dari NPM, Nama, Kelas, dan Jurusan!.
 
@@ -96,3 +99,106 @@ func main() {
   sqlQuery()
 }
 
+
+
+=============
+Versi---2
+
+=============
+
+package main
+
+import (
+    "database/sql"
+    "fmt"
+
+    _ "github.com/go-sql-driver/mysql"
+)
+
+type data_msh struct {
+    id    int
+    nama  string
+    npm   int
+    kelas string
+}
+
+func connect() (*sql.DB, error) {
+    db, err := sql.Open("mysql",
+    "root:@tcp(127.0.0.1:3306)/fata_54419164")
+    if err != nil {
+        return nil, err
+    }
+    return db, nil
+}
+
+func sqlQuery() {
+    db, err := connect()
+    if err != nil {
+        fmt.Println(err.Error())
+    }
+    defer db.Close()
+
+    // tambah data
+    _, err = db.Exec("insert into data_msh values
+    (?,?,?,?)", "", "Udin", "12345678", "2IA07")
+    if err != nil {
+        fmt.Println(err.Error())
+        return
+    }
+    fmt.Printf("Data berhasil ditambah")
+
+    //Update data
+    // _, err = db.Exec("update data_msh set nama= ? where id=?", "Siapa", 2)
+    // if err != nil {
+    //  fmt.Println(err.Error())
+    //  return
+    // }
+    // fmt.Printf("Data berhasil diubah")
+
+    //Hapus Data
+    _, err = db.Exec("delete from data_msh where id=?", 2)
+    if err != nil {
+        fmt.Println(err.Error())
+        return
+    }
+    fmt.Printf("Data berhasil dihapus")
+
+    rows, err := db.Query("select * from data_msh")
+    if err != nil {
+        fmt.Println(err.Error())
+        return
+    }
+    defer rows.Close()
+
+    var result []data_msh
+
+    for rows.Next() {
+        var each = data_msh{}
+        var err = rows.Scan(&each.id, &each.nama, &each.npm, &each.kelas)
+
+        if err != nil {
+            fmt.Println(err.Error())
+            return
+        }
+        result = append(result, each)
+    }
+
+    if err != nil {
+        fmt.Println(err.Error())
+        return
+    }
+
+    for _, each := range result {
+        fmt.Print(each.id)
+        fmt.Print(" | ")
+        fmt.Print(each.nama)
+        fmt.Print(" | ")
+        fmt.Print(each.npm)
+        fmt.Print(" | ")
+        fmt.Print(each.kelas, "\n")
+    }
+}
+
+func main() {
+    sqlQuery()
+}

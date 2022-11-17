@@ -6,15 +6,15 @@ Versi--1
 //1) Buatlah database dan tabel dengan nama bebas untuk menyimpan data 3 
 //   mahasiswa yang terdiri dari NPM, Nama, Kelas, dan Jurusan!.
 
-* Pertama-tama membuat databasen nya terlebih dahulu menggunakan XAMPP
-* Setelah Itu Membuat Folder Baru Dan Menambahakan  go.mod,Dan go.sum 
-  Berikut Cara nya : 
+/* Pertama-tama membuat databasen nya terlebih dahulu menggunakan XAMPP
+ Setelah Itu Membuat Folder Baru Dan Menambahakan  go.mod,Dan go.sum 
+  Berikut Cara nya :*/ 
  - go mod init_Nama Folder, Contoh : go mod init LA3
 
-  selanjutnya membuat koneksi ke database/membuat go.sum dengan cara
+ /* selanjutnya membuat koneksi ke database/membuat go.sum dengan cara*/
  - go get -u github.com/go-sql-driver/mysql
 
-* Selanjutnya Buka VSC dan buat file Baru dengan nama main.go
+/* Selanjutnya Buka VSC dan buat file Baru dengan nama main.go*/
 
 
 

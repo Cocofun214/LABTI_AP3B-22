@@ -10,3 +10,5 @@ func main() {
     fmt.Println("Anda LOLOS") // Jika Benar 
   } else {
     fmt.Println("Kamu Tidak Memenuhi Syarat") //Jika Tidak
+  }
+}
